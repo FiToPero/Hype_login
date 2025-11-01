@@ -1,0 +1,35 @@
+services:
+  php:
+    build:
+      context: .
+      target: dev
+    container_name: php_server
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8080:8080"
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "mysql://hype_user:hype_password@db:3306/hype_distributor"
+      REDIS_URL: "redis://redis:6379"
+    depends_on:
+      - db
+      - redis
+      - mailpit
+    user: "1000:1000" 
+  db:
+    image: mysql:8.4-alpine
+    container_name: db_database
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: hype_distributor
+      MYSQL_USER: hype_user
+      MYSQL_PASSWORD: hype_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+  laravel_app:
