@@ -1,3 +1,35 @@
+<?php
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth();
+
+// Redirect if already logged in
+if ($auth->isLoggedIn()) {
+    header('Location: dashboard.php');
+    exit();
+}
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // CSRF protection
+    if (!$auth->validateCSRFToken($_POST['csrf_token'] ?? '')) {
+        $error = 'Invalid security token. Please try again.';
+    } else {
+        $result = $auth->login(
+            $_POST['username'] ?? '',
+            $_POST['password'] ?? ''
+        );
+        
+        if ($result['success']) {
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            $error = $result['error'];
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,40 +46,7 @@
                 <p>Distributor Portal</p>
             </div>
             
-            <h2>Distributor Login</h2>
-            
-            <?php
-            require_once __DIR__ . '/../src/Auth.php';
-            
-            $auth = new Auth();
-            
-            // Redirect if already logged in
-            if ($auth->isLoggedIn()) {
-                header('Location: dashboard.php');
-                exit();
-            }
-            
-            $error = '';
-            
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // CSRF protection
-                if (!$auth->validateCSRFToken($_POST['csrf_token'] ?? '')) {
-                    $error = 'Invalid security token. Please try again.';
-                } else {
-                    $result = $auth->login(
-                        $_POST['username'] ?? '',
-                        $_POST['password'] ?? ''
-                    );
-                    
-                    if ($result['success']) {
-                        header('Location: dashboard.php');
-                        exit();
-                    } else {
-                        $error = $result['error'];
-                    }
-                }
-            }
-            ?>
+            <h2>Login</h2>
             
             <?php if (!empty($error)): ?>
                 <div class="alert alert-error">

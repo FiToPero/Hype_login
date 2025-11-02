@@ -1,3 +1,24 @@
+<?php
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth();
+
+// Check if user is logged in
+if (!$auth->isLoggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+$currentUser = $auth->getCurrentUser();
+$allUsers = $auth->getAllUsers();
+
+// Handle logout
+if (isset($_GET['logout'])) {
+    $auth->logout();
+    header('Location: login.php?message=logged_out');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,27 +28,6 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <?php
-    require_once __DIR__ . '/../src/Auth.php';
-    
-    $auth = new Auth();
-    
-    // Check if user is logged in
-    if (!$auth->isLoggedIn()) {
-        header('Location: login.php');
-        exit();
-    }
-    
-    $currentUser = $auth->getCurrentUser();
-    $allUsers = $auth->getAllUsers();
-    
-    // Handle logout
-    if (isset($_GET['logout'])) {
-        $auth->logout();
-        header('Location: login.php?message=logged_out');
-        exit();
-    }
-    ?>
     
     <div class="dashboard">
         <nav class="navbar">

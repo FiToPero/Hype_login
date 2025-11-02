@@ -15,11 +15,14 @@ class Auth {
     
     private function startSecureSession() {
         if (session_status() === PHP_SESSION_NONE) {
-            // Secure session configuration
-            ini_set('session.cookie_httponly', 1);
-            ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
-            ini_set('session.use_strict_mode', 1);
-            ini_set('session.cookie_samesite', 'Strict');
+            // Only set session configuration if headers haven't been sent yet
+            if (!headers_sent()) {
+                // Secure session configuration
+                ini_set('session.cookie_httponly', 1);
+                ini_set('session.cookie_secure', isset($_SERVER['HTTPS']));
+                ini_set('session.use_strict_mode', 1);
+                ini_set('session.cookie_samesite', 'Strict');
+            }
             
             session_start();
             
@@ -50,6 +53,11 @@ class Auth {
         // Input validation
         if (empty($username) || strlen($username) < 3 || strlen($username) > 50) {
             $errors[] = "Username must be between 3 and 50 characters";
+        }
+        
+        // Validate username format (only letters, numbers, underscores, and hyphens)
+        if (!preg_match('/^[a-zA-Z0-9_-]+$/', $username)) {
+            $errors[] = "Username can only contain letters, numbers, underscores, and hyphens";
         }
         
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 100) {

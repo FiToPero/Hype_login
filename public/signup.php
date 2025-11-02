@@ -1,3 +1,30 @@
+<?php
+require_once __DIR__ . '/../src/Auth.php';
+
+$auth = new Auth();
+$errors = [];
+$success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // CSRF protection
+    if (!$auth->validateCSRFToken($_POST['csrf_token'] ?? '')) {
+        $errors[] = 'Invalid security token. Please try again.';
+    } else {
+        $result = $auth->register(
+            $_POST['username'] ?? '',
+            $_POST['email'] ?? '',
+            $_POST['password'] ?? '',
+            $_POST['confirm_password'] ?? ''
+        );
+        
+        if ($result['success']) {
+            $success = $result['message'];
+        } else {
+            $errors = $result['errors'];
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,34 +43,7 @@
             
             <h2>Create Account</h2>
             
-            <?php
-            require_once __DIR__ . '/../src/Auth.php';
-            
-            $auth = new Auth();
-            $errors = [];
-            $success = '';
-            
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // CSRF protection
-                if (!$auth->validateCSRFToken($_POST['csrf_token'] ?? '')) {
-                    $errors[] = 'Invalid security token. Please try again.';
-                } else {
-                    $result = $auth->register(
-                        $_POST['username'] ?? '',
-                        $_POST['email'] ?? '',
-                        $_POST['password'] ?? '',
-                        $_POST['confirm_password'] ?? ''
-                    );
-                    
-                    if ($result['success']) {
-                        $success = $result['message'];
-                    } else {
-                        $errors = $result['errors'];
-                    }
-                }
-            }
-            
-            if (!empty($errors)): ?>
+            <?php if (!empty($errors)): ?>
                 <div class="alert alert-error">
                     <?php foreach ($errors as $error): ?>
                         <p><?php echo htmlspecialchars($error); ?></p>
