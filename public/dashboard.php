@@ -33,7 +33,7 @@ if (isset($_GET['logout'])) {
         <nav class="navbar">
             <div class="navbar-brand">
                 <h1>HYPE</h1>
-                <span>Distributor Portal</span>
+                <span>Test Portal</span>
             </div>
             
             <div class="navbar-user">
@@ -47,42 +47,15 @@ if (isset($_GET['logout'])) {
         
         <main class="main-content">
             <div class="dashboard-header">
-                <h2>🎉 Login Successful!</h2>
+                <h2>Login Successful!</h2>
                 <p class="success-message">
-                    You have successfully logged into the Hype Distributor portal. 
-                    Welcome to your secure dashboard where you can view registered distributors.
+                    You have successfully logged into the Hype Test portal. <br>
+                    Welcome to your secure dashboard where you can view registered.
                 </p>
             </div>
-            
-            <div class="dashboard-stats">
-                <div class="stat-card">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-info">
-                        <h3><?php echo count($allUsers); ?></h3>
-                        <p>Total Distributors</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">🔐</div>
-                    <div class="stat-info">
-                        <h3>Secure</h3>
-                        <p>Login System</p>
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-icon">⏰</div>
-                    <div class="stat-info">
-                        <h3><?php echo date('H:i'); ?></h3>
-                        <p>Current Time</p>
-                    </div>
-                </div>
-            </div>
-            
             <div class="users-section">
                 <div class="section-header">
-                    <h3>📋 Registered Distributors</h3>
+                    <h3>Registered Distributors</h3>
                     <p>Complete list of all registered distributor accounts</p>
                 </div>
                 
@@ -151,7 +124,7 @@ if (isset($_GET['logout'])) {
             </div>
             
             <div class="security-info-dashboard">
-                <h4>🔒 Security Features Active</h4>
+                <h4>Security Features Active</h4>
                 <div class="security-features">
                     <div class="feature">
                         <span class="feature-icon">✅</span>
@@ -180,14 +153,6 @@ if (isset($_GET['logout'])) {
                 </div>
             </div>
         </main>
-        
-        <footer class="dashboard-footer">
-            <p>&copy; <?php echo date('Y'); ?> Hype Distributor Portal. All rights reserved.</p>
-            <p>
-                Session started: <?php echo date('M j, Y H:i:s', $_SESSION['login_time'] ?? time()); ?> | 
-                Your IP: <?php echo htmlspecialchars($_SERVER['REMOTE_ADDR'] ?? 'Unknown'); ?>
-            </p>
-        </footer>
     </div>
     
     <style>

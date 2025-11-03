@@ -42,8 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="auth-form">
             <div class="logo">
-                <h1>HYPE</h1>
-                <p>Distributor Portal</p>
+                <h1>HYPE test</h1>
             </div>
             
             <h2>Login</h2>

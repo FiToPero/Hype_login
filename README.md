@@ -1,6 +1,22 @@
 # Hype Distributor Portal
 
-A secure PHP-based distributor login system built for the Hype company test assignment.
+### Prerequisites
+- Docker and Docker Compose
+- Web browser
+
+### Installation
+
+1. **Clone/Download the project**
+   # If you have the files, navigate to the project directory
+   cd Hype_login
+2. **Start the Docker environment**
+   docker-compose up -d
+3. **Initialize the database**
+   ./setup-database.sh
+4. **Access the application**
+   - Open your web browser
+   - Navigate to: `http://localhost:8080`
+
 
 ##  Project Requirements Fulfilled
 
@@ -35,33 +51,6 @@ A secure PHP-based distributor login system built for the Hype company test assi
 - **Session Tracking** - Complete session lifecycle management
 - **Security Audit Trail** - Failed attempts, lockouts, and suspicious activity logged
 
-##  Quick Start
-
-### Prerequisites
-- Docker and Docker Compose
-- Web browser
-
-### Installation
-
-1. **Clone/Download the project**
-   ```bash
-   # If you have the files, navigate to the project directory
-   cd Hype_login
-   ```
-
-2. **Start the Docker environment**
-   ```bash
-   docker-compose up -d
-   ```
-
-3. **Initialize the database**
-   ```bash
-   ./setup-database.sh
-   ```
-
-4. **Access the application**
-   - Open your web browser
-   - Navigate to: `http://localhost:8080`
 
 
 

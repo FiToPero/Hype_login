@@ -15,7 +15,6 @@
             </div>
             
             <div class="error-content">
-                <div class="error-icon">⚠️</div>
                 <h2>Login Error</h2>
                 
                 <div class="alert alert-error">
@@ -31,7 +30,7 @@
                 </div>
                 
                 <div class="security-measures">
-                    <h3>🔒 Security Measures in Place</h3>
+                    <h3>Security Measures in Place</h3>
                     <div class="security-grid">
                         <div class="security-item">
                             <strong>Account Lockout:</strong>
@@ -73,16 +72,6 @@
                 <div class="action-buttons">
                     <a href="login.php" class="btn btn-primary">Try Login Again</a>
                     <a href="signup.php" class="btn btn-secondary">Create Account</a>
-                </div>
-                
-                <div class="contact-info">
-                    <h4>Need Help?</h4>
-                    <p>If you continue to experience issues, please contact our support team:</p>
-                    <ul>
-                        <li>📧 Email: support@hype-distributor.com</li>
-                        <li>📞 Phone: 1-800-HYPE-SUP</li>
-                        <li>⏰ Support Hours: Monday-Friday, 9AM-6PM EST</li>
-                    </ul>
                 </div>
             </div>
         </div>

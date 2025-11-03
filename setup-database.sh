@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Hype Distributor Portal - Database Setup Script
 # This script initializes the database with the required schema
 
-echo "🚀 Setting up Hype Distributor Portal Database..."
+echo "Setting up Hype Distributor Portal Database..."
 
 # Wait for MySQL to be ready
-echo "⏳ Waiting for MySQL to be ready..."
+echo "Waiting for MySQL to be ready..."
 sleep 10
 
 # Check if database exists and create schema
-echo "📊 Creating database schema..."
+echo "Creating database schema..."
+
 docker exec -i db_database mysql -u root -proot_password << 'EOF'
 CREATE DATABASE IF NOT EXISTS hype_distributor;
 USE hype_distributor;
@@ -65,24 +65,12 @@ FLUSH PRIVILEGES;
 EOF
 
 if [ $? -eq 0 ]; then
-    echo "✅ Database schema created successfully!"
+    echo "Database schema created successfully!"
 else
-    echo "❌ Error creating database schema"
+    echo "Error creating database schema"
     exit 1
 fi
 
-echo "🔧 Database setup completed!"
+echo "Database setup completed!"
 echo ""
-echo "📝 You can now access the application at: http://localhost:8080"
-echo ""
-echo "🎯 Test the system:"
-echo "   1. Create a new distributor account"
-echo "   2. Login with your credentials"
-echo "   3. View the dashboard with user list"
-echo ""
-echo "🔒 Security features active:"
-echo "   - Password hashing (Argon2ID)"
-echo "   - CSRF protection"
-echo "   - Rate limiting"
-echo "   - Account lockout"
-echo "   - Session security"
+echo "You can now access the application at: http://localhost:8080"
