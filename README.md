@@ -7,29 +7,20 @@
 ### Installation
 
 1. **Clone/Download the project**
-   # If you have the files, navigate to the project directory
    cd Hype_login
+
 2. **Start the Docker environment**
    docker-compose up -d
+
 3. **Initialize the database**
    ./setup-database.sh
+
 4. **Access the application**
    - Open your web browser
    - Navigate to: `http://localhost:8080`
 
 
-##  Project Requirements Fulfilled
 
- **User signup form** with Username, Password, Password confirmation, and Email Address  
- **Login form** with Username and Password  
- **Login error page** with comprehensive error handling  
- **Successful login page** displaying a list of all registered users  
- **Complete programming code** ready to run on any server  
- **Maximum security** implementation using industry best practices  
- **Pure PHP** (no frameworks) with **MySQL database**  
- **JavaScript support** for enhanced user experience  
-
-##  Security Features
 
 ### Authentication & Authorization
 - **Argon2ID Password Hashing** - Most secure hashing algorithm
